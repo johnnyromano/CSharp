@@ -9,8 +9,8 @@ using System.Net;
 using System.Data;
 
 // author: Johnny Romano
-// date:   25-Nov-2016
-// ver:    1.4
+// date:   30-Nov-2016
+// ver:    1.5
 // name:   clsDataLayer.cs
 // desc:   DataLayer for Payroll System
 
@@ -62,6 +62,26 @@ public class clsDataLayer
         command.CommandText = strSQL;
         command.ExecuteNonQuery();
         conn.Close();
+    }
+
+
+    // This function verifies a user in the tblUser table
+    public static dsUser VerifyUser(string Database, string UserName, string UserPassword)
+    {
+        // new dsUser() Object
+        // set new dbConnection as sqlConn
+        // sqlDA represents dataset from tblUser filtered against UserName + UserPassword
+        // refresh row to db
+        // return dsUser() object
+        dsUser DS = new dsUser();
+        OleDbConnection sqlConn = new OleDbConnection("PROVIDER=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + Database);
+        OleDbDataAdapter sqlDA = new OleDbDataAdapter(
+            "Select SecurityLevel from tblUserLogin " +
+            "where UserName like '" + UserName + "' " +
+            "and UserPassword like '" + UserPassword + "'", sqlConn);
+
+        sqlDA.Fill(DS.tblUserLogin);
+        return DS;
     }
     public static dsPersonnel GetPersonnel(string Database, string strSearch)
     {
@@ -145,6 +165,57 @@ public class clsDataLayer
         }
         return recordSaved;
     }
+
+    // This function saves the personnel data
+    public static bool SaveUser(string Database, string UserName, string Password,
+    string SecurityLevel)
+    {
+        bool recordSaved;
+        OleDbTransaction myTransaction = null;
+
+        try
+        {
+            // set new dbConnection
+            // and opens a connection
+            // represent an SQL statement or stored procedure to execute against a data source.
+            OleDbConnection conn = new OleDbConnection("PROVIDER=Microsoft.ACE.OLEDB.12.0;" + "Data Source=" + Database);
+            conn.Open();
+            OleDbCommand command = conn.CreateCommand();
+
+            // paramaterize SQL string
+            // set value indicating how property should be interpreted
+            // set SQL statement
+            // execute SQL against the connection and returns number of rows affected
+            // close connection
+            // return 
+            string strSQL;
+
+            myTransaction = conn.BeginTransaction();
+            command.Transaction = myTransaction;
+
+
+            strSQL = "Insert into tblUserLogin " +
+                "(UserName, UserPassword, SecurityLevel) values ('" +
+                UserName + "', '" + Password + "', '" + SecurityLevel + "')";
+
+            
+            command.CommandType = CommandType.Text;
+            command.CommandText = strSQL;
+            command.ExecuteNonQuery();
+
+            myTransaction.Commit();
+
+            conn.Close();
+            recordSaved = true;
+        }
+        catch (Exception ex)
+        {
+            myTransaction.Rollback();
+            recordSaved = false;
+        }
+        return recordSaved;
+    }
+
 
     // get an IPv4 Address
     public static string GetIP4Address()

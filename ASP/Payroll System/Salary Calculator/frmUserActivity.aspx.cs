@@ -5,6 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+// author: Johnny Romano
+// date:   30-Nov-2016
+// ver:    1.0
+// name:   frmUserActivity.aspx.cs
+// desc:   Tracks what pages are being accessed
 public partial class Salary_Calculator_frmUserActivity : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)

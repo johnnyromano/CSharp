@@ -6,14 +6,24 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 // author: Johnny Romano
-// date:   13-Nov-2016
-// ver:    1.1
+// date:   30-Nov-2016
+// ver:    1.2
 // name:   frmPersonnel.aspx.cs
 // desc:   Enter New Employee information
 public partial class Salary_Calculator_frmPersonnel : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // SecurityLevel flag_controls
+        if (Session["SecurityLevel"] == "A")
+        {
+            btnSubmit.Visible = true;
+        }
+        else
+        {
+            btnSubmit.Visible = false;
+        }
+
         // write url to log
         string path = HttpContext.Current.Request.Url.AbsolutePath;
         clsDataLayer.SaveUserActivity(Server.MapPath("PayrollSystem_DB.accdb"), path);
