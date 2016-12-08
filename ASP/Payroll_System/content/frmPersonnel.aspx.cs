@@ -40,7 +40,8 @@ public partial class frmPersonnel : System.Web.UI.Page
             Session["txtStartDate"] = txtStartDate.Text;
             Session["txtEndDate"] = txtEndDate.Text;
 
-            Response.Redirect("frmPersonnelVerified.aspx");
+            Response.Redirect("frmPersonnelVerified.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
     }   
 }

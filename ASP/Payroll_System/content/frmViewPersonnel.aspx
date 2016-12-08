@@ -14,7 +14,7 @@
         <br />
         <asp:Panel ID="Panel1" runat="server">
             <asp:Label ID="lblPersonnel" runat="server" Text="View Personnel"></asp:Label>
-            <asp:GridView ID="grdViewPersonnel" runat="server">
+            <asp:GridView ID="grdViewPersonnel" runat="server" >
             </asp:GridView>
         </asp:Panel>
     

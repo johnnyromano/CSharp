@@ -129,11 +129,12 @@ public class clsDataLayer
             // execute SQL against the connection and returns number of rows affected
             // close connection
             // return 
-            string strSQL;
 
+            string strSQL;
+                       
             myTransaction = conn.BeginTransaction();
             command.Transaction = myTransaction;
-
+            
             strSQL = "Insert into tblPersonnel " +
                 "(FirstName, LastName) values ('" +
                 FirstName + "', '" + LastName + "')";
@@ -141,20 +142,19 @@ public class clsDataLayer
             command.CommandType = CommandType.Text;
             command.CommandText = strSQL;
             command.ExecuteNonQuery();
+            
 
-            strSQL = "UPDATE tblPersonnel " +
+            strSQL = "Update tblPersonnel " +
                 "Set PayRate=" + PayRate + ", " +
-                "StartDate=" + StartDate + ", " +
-                "EndDate=" + EndDate + ", " +
-                "WHERE ID=(Select Max(ID) FROM tblPersoneel)";
-
+                "StartDate='" + StartDate + "', " +
+                "EndDate='" + EndDate + "' " +
+                "Where ID=(Select Max(ID) From tblPersonnel)";
+            
             command.CommandType = CommandType.Text;
             command.CommandText = strSQL;
             command.ExecuteNonQuery();
 
             myTransaction.Commit();
-
-
             conn.Close();
             recordSaved = true;
         }

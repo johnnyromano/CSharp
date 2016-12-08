@@ -2,14 +2,15 @@
 <xs:schema id="dsPersonnel" targetNamespace="http://tempuri.org/dsPersonnel.xsd" xmlns:mstns="http://tempuri.org/dsPersonnel.xsd" xmlns="http://tempuri.org/dsPersonnel.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PayrollSystem_DBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PayrollSystem_DBConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PayrollSystem_DBConnectionString.ConnectionString" Provider="System.Data.OleDb" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PayrollSystem_DBConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="PayrollSystem_DBConnectionString (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PayrollSystem_DBConnectionString.ConnectionString" Provider="System.Data.OleDb" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PayrollSystem_DB" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PayrollSystem_DB (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PayrollSystem_DB.ConnectionString" Provider="System.Data.OleDb" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblPersonnelTableAdapter" GeneratorDataComponentClassName="tblPersonnelTableAdapter" Name="tblPersonnel" UserDataComponentName="tblPersonnelTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="PayrollSystem_DBConnectionString (Web.config)" DbObjectName="tblPersonnel" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="PayrollSystem_DB (Web.config)" DbObjectName="tblPersonnel" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblPersonnel` WHERE ((`ID` = ?))</CommandText>
@@ -31,7 +32,7 @@
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, FirstName, LastName, PayRate, StartDate, EndDate FROM tblPersonnel</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -66,7 +67,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="dsPersonnel" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsPersonnel" msprop:Generator_DataSetName="dsPersonnel">
+  <xs:element name="dsPersonnel" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="dsPersonnel" msprop:Generator_UserDSName="dsPersonnel">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="tblPersonnel" msprop:Generator_TableClassName="tblPersonnelDataTable" msprop:Generator_TableVarName="tabletblPersonnel" msprop:Generator_TablePropName="tblPersonnel" msprop:Generator_RowDeletingName="tblPersonnelRowDeleting" msprop:Generator_RowChangingName="tblPersonnelRowChanging" msprop:Generator_RowEvHandlerName="tblPersonnelRowChangeEventHandler" msprop:Generator_RowDeletedName="tblPersonnelRowDeleted" msprop:Generator_UserTableName="tblPersonnel" msprop:Generator_RowChangedName="tblPersonnelRowChanged" msprop:Generator_RowEvArgName="tblPersonnelRowChangeEvent" msprop:Generator_RowClassName="tblPersonnelRow">
